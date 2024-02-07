@@ -1,28 +1,68 @@
 version: '3.8'
 services:
-  ipfs:
-    build: .
-    restart: unless-stopped
+
+  ipfs-node-0:
+    container_name: ipfs-node-0
+    image: fe69ffd70e3a
+    # restart: unless-stopped
     volumes:
-      - ipfs_path:/data/ipfs
-      - ipfs_fuse:/ipfs
-      - ipns_fuse:/ipns
-    environment:
-      - IPFS_PATH=/data/ipfs
-    ports:
-      # Swarm listens on all interfaces, so is remotely reachable.
-      - 4001:4001/tcp
-      - 4001:4001/udp
+      - ./ipfs-node/0:/data/ipfs  
+    
+  ipfs-node-1:
+    container_name: ipfs-node-1
+    image: fe69ffd70e3a
+    # restart: unless-stopped
+    volumes:
+      - ./ipfs-node/1:/data/ipfs
+    
+  ipfs-node-2:
+    container_name: ipfs-node-2
+    image: fe69ffd70e3a
+    # restart: unless-stopped
+    volumes:
+      - ./ipfs-node/2:/data/ipfs
+    
+  ipfs-node-3:
+    container_name: ipfs-node-3
+    image: fe69ffd70e3a
+    # restart: unless-stopped
+    volumes:
+      - ./ipfs-node/3:/data/ipfs
+   
+  ipfs-node-4:
+    container_name: ipfs-node-4
+    image: fe69ffd70e3a
+    # restart: unless-stopped
+    volumes:
+      - ./ipfs-node/4:/data/ipfs
+
+  ipfs-node-5:
+    container_name: ipfs-node-5
+    image: fe69ffd70e3a
+    # restart: unless-stopped
+    volumes:
+      - ./ipfs-node/5:/data/ipfs
+
+
+        # ipfs:
+  #   build: .
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ipfs_path:/data/ipfs
+  #     - ipfs_fuse:/ipfs
+  #     - ipns_fuse:/ipns
+  #   environment:
+  #     - IPFS_PATH=/data/ipfs
+  #   ports:
+  #     # Swarm listens on all interfaces, so is remotely reachable.
+  #     - 4001:4001/tcp
+  #     - 4001:4001/udp
       
-      # The following ports only listen on the loopback interface, so are not remotely reachable by default.
-      # If you want to override these or add more ports, see https://docs.docker.com/compose/extends/ .
+  #     # The following ports only listen on the loopback interface, so are not remotely reachable by default.
+  #     # If you want to override these or add more ports, see https://docs.docker.com/compose/extends/ .
       
-      # API port, which includes admin operations, so you probably don't want this remotely accessible.
-      - 127.0.0.1:5001:5001
+  #     # API port, which includes admin operations, so you probably don't want this remotely accessible.
+  #     - 127.0.0.1:5001:5001
       
-      # HTTP Gateway
-      - 127.0.0.1:8080:8080
-volumes:
-  ipfs_path:
-  ipfs_fuse:
-  ipns_fuse:
+  #     # HTTP Gateway
+  #     - 127.0.0.1:8080:8080
