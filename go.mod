@@ -251,3 +251,7 @@ require (
 )
 
 go 1.20
+
+replace (
+	github.com/libp2p/go-libp2p-kad-dht => ../kubo/go-libp2p-kad-dht
+)
